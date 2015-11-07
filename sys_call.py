@@ -1,7 +1,9 @@
-import sys
+import sys, os
+
+path = os.path.dirname(os.path.realpath(__file__))
 
 def main(arg="32"):
-    name = "/home/wip/Code/scripts/.data"+arg
+    name = path+"/.data"+arg
     f = open(name)
     syscalls = {}
     title = f.readline().split("\t") 
