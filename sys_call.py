@@ -21,12 +21,19 @@ def display(syscall, call):
     data = [w[1] for w in syscall[call]]
     for i in range(len(data)):
         print(title[i], "\t\t", data[i])
+    return data[0]
     
+def manual(func):
+    call = "man " + func.strip("sys_")
+    os.system(call)
 
 if __name__ == "__main__":
     if len(sys.argv) <= 1:
         print("USAGE: ")
         sys.exit()
-    data = main() if len(sys.argv) == 2 else main(sys.argv[2])
-    eax = sys.argv[-1]
-    display(data, eax)
+    data = main() if len(sys.argv) == 2 else main(int(sys.argv[2]))
+    eax = int(sys.argv[-1], 16)
+    name = display(data, eax)
+    prompt = input("Show manual entry (y/n)? ")
+    if prompt == "y":
+        manual(name)
