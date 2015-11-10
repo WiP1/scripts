@@ -24,16 +24,19 @@ def display(syscall, call):
     return data[0]
     
 def manual(func):
-    call = "man " + func.strip("sys_")
-    os.system(call)
+    prompt = input("Display manual entry (y/n)? ")
+    if prompt == "y":
+        call = "man " + func.strip("sys_")
+        os.system(call)
 
 if __name__ == "__main__":
     if len(sys.argv) <= 1:
-        print("USAGE: ")
+        print("USAGE: python3 sys_call.py [int(eax)] [64 or 32] [-m]")
         sys.exit()
-    data = main() if len(sys.argv) == 2 else main(int(sys.argv[2]))
-    eax = int(sys.argv[-1], 16)
+    eax = sys.argv[1]
+    man = "m" in sys.argv
+    arch = sys.argv[2] if not man and len(sys.argv) > 2 else "32"
+    data = main(arch)
     name = display(data, eax)
-    prompt = input("Show manual entry (y/n)? ")
-    if prompt == "y":
+    if man:
         manual(name)
