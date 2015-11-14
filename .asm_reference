@@ -1,0 +1,11 @@
+lods	Load String
+mov	Move one value from src to dest
+call	Pushes current $eip onto stack and performs a jmp to address. This saves the location to return to when subroutine finishes.
+ret	Pops code location off stack, and performs a jump back to retrieved location.
+jmp	Jump to instruction label or address
+jle	Jump if less than or equal to (Flags: ZF or SF)
+push	Decrements $esp by 4, and places operand into $esp
+pop	Moves 4 bytes at $esp into the egister or memory location,and increments $esp by 4
+lea	Places the address specified by src, into dest. (the address not the contents)
+nop	No Operation.... Does Nothing
+ja	Jump if flag Z and C are cleared. Same as JNBE (jump if not below or equal)

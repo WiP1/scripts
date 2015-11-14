@@ -2,7 +2,7 @@
 import os, argparse
 path = os.path.dirname(os.path.realpath(__file__))
 
-f = path+"/asm_reference"
+f = path+"/.asm_reference"
 
 def load():
     db = {}
