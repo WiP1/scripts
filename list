@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function tree {
 	for i in $(ls -d $1); do
@@ -6,4 +6,4 @@ function tree {
 		tree $i
 	done
 }
-tree .
+tree */ 

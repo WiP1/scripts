@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, argparse
 
 path = os.path.dirname(os.path.realpath(__file__))
 
@@ -30,13 +30,12 @@ def manual(func):
         os.system(call)
 
 if __name__ == "__main__":
-    if len(sys.argv) <= 1:
-        print("USAGE: python3 sys_call.py [int(eax)] [64 or 32] [-m]")
-        sys.exit()
-    eax = sys.argv[1]
-    man = "m" in sys.argv
-    arch = sys.argv[2] if not man and len(sys.argv) > 2 else "32"
-    data = main(arch)
-    name = display(data, eax)
-    if man:
-        manual(name)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("eax", help="Enter the contents of EAX here, as an int", type=int)
+    parser.add_argument("-a", help="Enter the word size of CPU (32/64)")
+    parser.add_argument("-m", help="Enter m to view manual entry on function", action='store_true')
+    args = parser.parse_args()
+    table = main(args.a) if args.a else main()
+    call = display(table, args.eax)
+    if args.m:
+        manual(call)
