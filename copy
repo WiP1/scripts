@@ -1,0 +1,5 @@
+#Really simple script..., use like: "command | copy" to pipe 2 clipboard
+#/bin/sh
+
+xclip -selection c 
+
