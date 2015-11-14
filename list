@@ -1,9 +1,0 @@
-#!/bin/bash
-
-function tree {
-	for i in $(ls -d $1); do
-		echo $i
-		tree $i
-	done
-}
-tree */ 
